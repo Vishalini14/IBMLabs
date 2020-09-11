@@ -1,34 +1,6 @@
-#!/usr/bin/env python
-# coding: utf-8
-
-# ## Exercise 2
-# In the course you learned how to do classificaiton using Fashion MNIST, a data set containing items of clothing. There's another, similar dataset called MNIST which has items of handwriting -- the digits 0 through 9.
-# 
-# Write an MNIST classifier that trains to 99% accuracy or above, and does it without a fixed number of epochs -- i.e. you should stop training once you reach that level of accuracy.
-# 
-# Some notes:
-# 1. It should succeed in less than 10 epochs, so it is okay to change epochs= to 10, but nothing larger
-# 2. When it reaches 99% or greater it should print out the string "Reached 99% accuracy so cancelling training!"
-# 3. If you add any additional variables, make sure you use the same names as the ones used in the class
-# 
-# I've started the code for you below -- how would you finish it? 
-
-# In[1]:
-
-
 import tensorflow as tf
 from os import path, getcwd, chdir
-
-# DO NOT CHANGE THE LINE BELOW. If you are developing in a local
-# environment, then grab mnist.npz from the Coursera Jupyter Notebook
-# and place it inside a local folder and edit the path to that location
 path = f"{getcwd()}/../tmp2/mnist.npz"
-
-
-# In[13]:
-
-
-
 
 def train_mnist():
     
@@ -56,36 +28,14 @@ def train_mnist():
                   loss='sparse_categorical_crossentropy',
                   metrics=['accuracy'])
     
-    # model fitting
+   
     history = model.fit(
         x_train, y_train,epochs = 7, callbacks = [callbacks]
     )
-    # model fitting
+  
     return history.epoch, history.history['acc'][-1]
-
-
-# In[14]:
-
 
 
 train_mnist()
 
-
-# In[4]:
-
-
-# Now click the 'Submit Assignment' button above.
-# Once that is complete, please run the following two cells to save your work and close the notebook
-
-
-# In[5]:
-
-
-get_ipython().run_cell_magic('javascript', '', '<!-- Save the notebook -->\nIPython.notebook.save_checkpoint();')
-
-
-# In[ ]:
-
-
-get_ipython().run_cell_magic('javascript', '', 'IPython.notebook.session.delete();\nwindow.onbeforeunload = null\nsetTimeout(function() { window.close(); }, 1000);')
 
